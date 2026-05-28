@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AR Fashion — Legacy of Elegance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --crimson: #8B1A1A;
+    --crimson-deep: #5C0F0F;
+    --crimson-light: #C9393980;
+    --gold: #B8974A;
+    --gold-light: #D4B878;
+    --gold-pale: #F5EDD6;
+    --ivory: #FAF7F2;
+    --ivory-dark: #F0EBE0;
+    --charcoal: #1A1208;
+    --charcoal-mid: #3D2E20;
+    --warm-gray: #7A6A5A;
+    --font-display: 'Cormorant Garamond', Georgia, serif;
+    --font-body: 'Jost', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--ivory);
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.5rem 5vw;
+    background: rgba(250, 247, 242, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(184, 151, 74, 0.2);
+    transition: all 0.4s ease;
+  }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 0.75rem;
+    text-decoration: none;
+  }
+  .nav-logo-img {
+    width: 48px; height: 48px; object-fit: contain;
+  }
+  .nav-logo-text {
+    font-family: var(--font-display);
+    font-size: 1.6rem; font-weight: 500;
+    color: var(--crimson);
+    letter-spacing: 0.08em;
+    line-height: 1;
+  }
+  .nav-logo-sub {
+    font-family: var(--font-body);
+    font-size: 0.55rem; font-weight: 300;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-top: 2px;
+  }
+
+  .nav-links {
+    display: flex; gap: 2.5rem; list-style: none;
+  }
+  .nav-links a {
+    font-family: var(--font-body);
+    font-size: 0.72rem; font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--charcoal-mid);
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute; bottom: -3px; left: 0;
+    width: 0; height: 1px;
+    background: var(--gold);
+    transition: width 0.3s ease;
+  }
+  .nav-links a:hover { color: var(--crimson); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-cta {
+    font-family: var(--font-body);
+    font-size: 0.7rem; font-weight: 400;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--ivory); background: var(--crimson);
+    padding: 0.65rem 1.5rem;
+    border: none; cursor: pointer;
+    text-decoration: none;
+    transition: background 0.3s;
+  }
+  .nav-cta:hover { background: var(--crimson-deep); }
+
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { width: 24px; height: 1px; background: var(--charcoal); display: block; transition: all 0.3s; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+  }
+
+  .hero-left {
+    background: var(--ivory-dark);
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 8vw 6vw 8vw 8vw;
+    position: relative; overflow: hidden;
+  }
+  .hero-left::before {
+    content: 'AR';
+    position: absolute; bottom: -2rem; left: -1rem;
+    font-family: var(--font-display);
+    font-size: 22rem; font-weight: 300;
+    color: rgba(184, 151, 74, 0.07);
+    line-height: 1; pointer-events: none;
+    user-select: none;
+  }
+
+  .hero-tag {
+    font-size: 0.65rem; font-weight: 300;
+    letter-spacing: 0.4em; text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .hero-tag::before {
+    content: '';
+    display: inline-block; width: 40px; height: 1px;
+    background: var(--gold);
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(3.2rem, 5.5vw, 6rem);
+    font-weight: 400; line-height: 1.05;
+    color: var(--charcoal);
+    margin-bottom: 1rem;
+  }
+  .hero-title em {
+    font-style: italic; color: var(--crimson);
+  }
+
+  .hero-desc {
+    font-size: 0.97rem; font-weight: 400;
+    line-height: 2; letter-spacing: 0.03em;
+    color: var(--charcoal);
+    max-width: 420px;
+    margin-bottom: 3rem;
+  }
+
+  .hero-actions {
+    display: flex; align-items: center; gap: 2rem;
+  }
+  .btn-primary {
+    font-size: 0.7rem; font-weight: 400;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--ivory); background: var(--crimson);
+    padding: 1rem 2.5rem; border: none; cursor: pointer;
+    text-decoration: none; display: inline-block;
+    transition: all 0.3s;
+  }
+  .btn-primary:hover { background: var(--crimson-deep); transform: translateY(-1px); }
+
+  .btn-secondary {
+    font-size: 0.7rem; font-weight: 400;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--crimson);
+    text-decoration: none;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    transition: gap 0.3s;
+  }
+  .btn-secondary:hover { gap: 0.9rem; }
+  .btn-secondary::after { content: '→'; }
+
+  .hero-stats {
+    display: flex; gap: 3rem; margin-top: 4rem;
+    padding-top: 3rem; border-top: 1px solid rgba(184, 151, 74, 0.3);
+  }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 2.8rem; font-weight: 400; color: var(--crimson);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.68rem; font-weight: 400;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--charcoal-mid); margin-top: 0.4rem;
+  }
+
+  .hero-right {
+    background: var(--crimson-deep);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .hero-right::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23B8974A' fill-opacity='0.07'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero-logo-display {
+    position: relative; z-index: 1;
+    display: flex; flex-direction: column; align-items: center; gap: 2rem;
+  }
+  .hero-logo-img {
+    width: clamp(160px, 25vw, 260px);
+    filter: brightness(0) invert(1) sepia(1) saturate(0.5) brightness(1.2);
+    opacity: 0.95;
+  }
+  .hero-logo-tagline {
+    font-family: var(--font-display);
+    font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+    font-weight: 300; font-style: italic;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+  }
+  .hero-divider {
+    width: 60px; height: 1px;
+    background: rgba(184, 151, 74, 0.6);
+  }
+
+  /* ── SECTION COMMON ── */
+  section { padding: 8rem 8vw; }
+  .section-tag {
+    font-size: 0.7rem; font-weight: 500;
+    letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--gold);
+    display: flex; align-items: center; gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .section-tag::before {
+    content: '';
+    display: inline-block; width: 30px; height: 1px;
+    background: var(--gold);
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.6rem, 4.5vw, 4.4rem);
+    font-weight: 400; line-height: 1.1;
+    color: var(--charcoal);
+    margin-bottom: 1.5rem;
+  }
+  .section-title em { font-style: italic; color: var(--crimson); }
+
+  /* ── MARQUEE ── */
+  .marquee-wrap {
+    background: var(--crimson);
+    padding: 1rem 0; overflow: hidden;
+  }
+  .marquee-track {
+    display: flex; gap: 3rem;
+    animation: marquee 20s linear infinite;
+    white-space: nowrap;
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .marquee-item {
+    font-size: 0.65rem; font-weight: 300;
+    letter-spacing: 0.35em; text-transform: uppercase;
+    color: rgba(255,255,255,0.8);
+    display: flex; align-items: center; gap: 1.5rem;
+  }
+  .marquee-item::after {
+    content: '✦';
+    color: var(--gold-light); font-size: 0.5rem;
+  }
+
+  /* ── ABOUT ── */
+  #about {
+    background: var(--ivory);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8vw; align-items: center;
+  }
+  .about-visual {
+    position: relative;
+  }
+  .about-block {
+    background: var(--ivory-dark);
+    aspect-ratio: 3/4; display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .about-block-inner {
+    text-align: center; padding: 3rem;
+  }
+  .about-block-num {
+    font-family: var(--font-display);
+    font-size: 7rem; font-weight: 300;
+    color: var(--gold-light); opacity: 0.4;
+    line-height: 1;
+  }
+  .about-block-label {
+    font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--warm-gray); margin-top: -1.5rem;
+  }
+  .about-accent {
+    position: absolute; bottom: -1.5rem; right: -1.5rem;
+    width: 160px; height: 160px;
+    background: var(--crimson);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .about-accent-text {
+    font-family: var(--font-display);
+    font-size: 1rem; font-style: italic; font-weight: 300;
+    color: rgba(255,255,255,0.9);
+    text-align: center; line-height: 1.6;
+  }
+  .about-content p {
+    font-size: 0.95rem; font-weight: 400;
+    line-height: 2; color: var(--charcoal-mid);
+    margin-bottom: 1.5rem;
+  }
+  .about-list {
+    list-style: none; margin: 2rem 0;
+  }
+  .about-list li {
+    font-size: 0.88rem; font-weight: 400;
+    letter-spacing: 0.05em; color: var(--charcoal);
+    padding: 0.85rem 0;
+    border-bottom: 1px solid rgba(184, 151, 74, 0.25);
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .about-list li::before { content: '✦'; color: var(--gold); font-size: 0.5rem; }
+
+  /* ── HERITAGE ── */
+  #heritage {
+    background: var(--charcoal);
+    padding: 8rem 8vw;
+  }
+  #heritage .section-tag { color: var(--gold-light); }
+  #heritage .section-tag::before { background: var(--gold-light); }
+  #heritage .section-title { color: var(--ivory); }
+
+  .heritage-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
+    margin-top: 4rem;
+  }
+  .heritage-card {
+    padding: 3rem 2rem;
+    border: 1px solid rgba(184, 151, 74, 0.2);
+    position: relative; overflow: hidden;
+    transition: border-color 0.3s;
+  }
+  .heritage-card:hover { border-color: rgba(184, 151, 74, 0.6); }
+  .heritage-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 3px; height: 0;
+    background: var(--gold);
+    transition: height 0.4s ease;
+  }
+  .heritage-card:hover::before { height: 100%; }
+  .heritage-icon {
+    font-family: var(--font-display);
+    font-size: 3rem; font-weight: 300;
+    color: var(--gold); margin-bottom: 1.5rem;
+    line-height: 1;
+  }
+  .heritage-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.6rem; font-weight: 400;
+    color: var(--ivory); margin-bottom: 1rem;
+  }
+  .heritage-card p {
+    font-size: 0.88rem; font-weight: 300;
+    line-height: 1.95; color: rgba(250, 247, 242, 0.8);
+  }
+
+  /* ── CRAFT ── */
+  #craft {
+    background: var(--ivory-dark);
+    padding: 8rem 8vw;
+  }
+  .craft-inner {
+    display: grid; grid-template-columns: 1fr 1.4fr; gap: 8vw; align-items: center;
+  }
+  .craft-range {
+    margin-top: 3rem;
+    padding: 2.5rem;
+    background: var(--ivory);
+    border-left: 3px solid var(--gold);
+  }
+  .craft-range-label {
+    font-size: 0.62rem; letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--warm-gray); margin-bottom: 1rem;
+  }
+  .craft-range-nums {
+    display: flex; align-items: baseline; gap: 0.5rem;
+  }
+  .range-low {
+    font-family: var(--font-display);
+    font-size: 2.8rem; font-weight: 300; color: var(--gold);
+  }
+  .range-sep {
+    font-family: var(--font-display);
+    font-size: 2rem; color: var(--warm-gray);
+  }
+  .range-high {
+    font-family: var(--font-display);
+    font-size: 2.8rem; font-weight: 300; color: var(--crimson);
+  }
+  .range-unit {
+    font-size: 0.75rem; font-weight: 300;
+    color: var(--warm-gray); margin-left: 0.5rem;
+    align-self: flex-end; padding-bottom: 0.5rem;
+  }
+
+  .craft-types {
+    margin-top: 4rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+  }
+  .craft-type {
+    padding: 2rem;
+    background: var(--ivory);
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.3s, transform 0.3s;
+    cursor: default;
+  }
+  .craft-type:hover { border-color: var(--gold); transform: translateY(-3px); }
+  .craft-type-name {
+    font-family: var(--font-display);
+    font-size: 1.5rem; font-weight: 400; color: var(--crimson);
+    margin-bottom: 0.5rem;
+  }
+  .craft-type-desc {
+    font-size: 0.88rem; font-weight: 400;
+    line-height: 1.85; color: var(--charcoal-mid);
+  }
+
+  /* ── OWNER ── */
+  #owner {
+    background: var(--ivory);
+    padding: 8rem 8vw;
+  }
+  .owner-inner {
+    display: grid; grid-template-columns: 1fr 1.5fr; gap: 8vw; align-items: start;
+  }
+  .owner-portrait {
+    position: sticky; top: 100px;
+  }
+  .owner-portrait-frame {
+    background: var(--ivory-dark);
+    aspect-ratio: 4/5;
+    display: flex; align-items: flex-end; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .owner-portrait-placeholder {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 1rem;
+  }
+  .owner-initials {
+    font-family: var(--font-display);
+    font-size: 6rem; font-weight: 300;
+    color: rgba(184, 151, 74, 0.3);
+    line-height: 1;
+  }
+  .owner-portrait-label {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: var(--crimson);
+    padding: 1.5rem 2rem;
+  }
+  .owner-name {
+    font-family: var(--font-display);
+    font-size: 1.5rem; font-weight: 400; font-style: italic;
+    color: var(--ivory);
+  }
+  .owner-role {
+    font-size: 0.62rem; font-weight: 300;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    margin-top: 0.3rem;
+  }
+
+  .owner-content h3 {
+    font-family: var(--font-display);
+    font-size: 2rem; font-weight: 300; color: var(--charcoal);
+    margin-bottom: 2rem; line-height: 1.3;
+  }
+  .owner-content h3 em { font-style: italic; color: var(--crimson); }
+  .owner-bio-block {
+    background: var(--gold-pale);
+    padding: 2.5rem;
+    border-left: 3px solid var(--gold);
+    margin-bottom: 2rem;
+    font-family: var(--font-display);
+    font-size: 1.2rem; font-style: italic; font-weight: 300;
+    line-height: 1.8; color: var(--charcoal-mid);
+  }
+  .owner-bio-text {
+    font-size: 0.95rem; font-weight: 400;
+    line-height: 2.1; color: var(--charcoal-mid);
+    margin-bottom: 1.2rem;
+  }
+  .owner-placeholder-note {
+    background: rgba(184, 151, 74, 0.1);
+    border: 1px dashed rgba(184, 151, 74, 0.4);
+    padding: 1.5rem;
+    font-size: 0.75rem; font-weight: 300;
+    color: var(--warm-gray); line-height: 1.7;
+    margin-top: 1.5rem;
+  }
+
+  /* ── WHOLESALE ── */
+  #wholesale {
+    background: var(--crimson);
+    padding: 7rem 8vw;
+    position: relative; overflow: hidden;
+  }
+  #wholesale::before {
+    content: 'B2B';
+    position: absolute; right: -2rem; top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--font-display);
+    font-size: 18rem; font-weight: 300;
+    color: rgba(255,255,255,0.04);
+    line-height: 1; pointer-events: none;
+  }
+  #wholesale .section-tag { color: rgba(255,255,255,0.5); }
+  #wholesale .section-tag::before { background: rgba(255,255,255,0.5); }
+  #wholesale .section-title { color: var(--ivory); }
+  .wholesale-inner {
+    display: grid; grid-template-columns: 1.2fr 1fr; gap: 8vw; align-items: center;
+  }
+  .wholesale-content p {
+    font-size: 0.95rem; font-weight: 400;
+    line-height: 2; color: rgba(250, 247, 242, 0.88);
+    margin-bottom: 1.2rem;
+  }
+  .wholesale-points {
+    margin-top: 2rem; list-style: none;
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+  .wholesale-points li {
+    display: flex; align-items: center; gap: 1rem;
+    font-size: 0.9rem; font-weight: 400;
+    color: rgba(250,247,242,0.92); letter-spacing: 0.05em;
+  }
+  .wholesale-points li::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--gold-light);
+    flex-shrink: 0;
+    transform: rotate(45deg);
+  }
+
+  .wholesale-cta-box {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 3rem;
+  }
+  .wholesale-cta-box h4 {
+    font-family: var(--font-display);
+    font-size: 1.5rem; font-weight: 300; font-style: italic;
+    color: var(--ivory); margin-bottom: 1rem;
+  }
+  .wholesale-cta-box p {
+    font-size: 0.78rem; font-weight: 300;
+    color: rgba(255,255,255,0.6); line-height: 1.8; margin-bottom: 2rem;
+  }
+  .btn-gold {
+    display: inline-block;
+    font-size: 0.7rem; font-weight: 400;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--charcoal); background: var(--gold-light);
+    padding: 1rem 2rem; text-decoration: none;
+    transition: background 0.3s;
+  }
+  .btn-gold:hover { background: var(--gold); }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: var(--ivory-dark);
+    padding: 8rem 8vw;
+  }
+  .contact-inner {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8vw;
+  }
+  .contact-info h3 {
+    font-family: var(--font-display);
+    font-size: 2rem; font-weight: 300;
+    color: var(--charcoal); margin-bottom: 1.5rem;
+  }
+  .contact-info h3 em { font-style: italic; color: var(--crimson); }
+  .contact-info p {
+    font-size: 0.93rem; font-weight: 400;
+    line-height: 2; color: var(--charcoal-mid);
+    margin-bottom: 2rem;
+  }
+  .contact-items {
+    display: flex; flex-direction: column; gap: 1.5rem;
+  }
+  .contact-item {
+    display: flex; align-items: flex-start; gap: 1.2rem;
+  }
+  .contact-icon {
+    width: 38px; height: 38px;
+    background: var(--crimson);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-family: var(--font-display);
+    font-size: 1rem; color: var(--ivory);
+  }
+  .contact-item-text {
+    font-size: 0.92rem; font-weight: 400;
+    color: var(--charcoal); line-height: 1.7;
+  }
+  .contact-item-label {
+    font-size: 0.65rem; font-weight: 500;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--gold); display: block; margin-bottom: 0.3rem;
+  }
+
+  .contact-form {
+    display: flex; flex-direction: column; gap: 1.2rem;
+  }
+  .form-group {
+    display: flex; flex-direction: column; gap: 0.5rem;
+  }
+  .form-label {
+    font-size: 0.62rem; font-weight: 400;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--warm-gray);
+  }
+  .form-input, .form-textarea, .form-select {
+    font-family: var(--font-body);
+    font-size: 0.82rem; font-weight: 300;
+    color: var(--charcoal);
+    background: var(--ivory);
+    border: 1px solid rgba(184, 151, 74, 0.25);
+    padding: 0.9rem 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  .form-input:focus, .form-textarea:focus, .form-select:focus {
+    border-color: var(--gold);
+  }
+  .form-textarea { resize: vertical; min-height: 120px; }
+  .form-select { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%239E8E7E' d='M6 8L1 3h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--charcoal);
+    padding: 4rem 8vw 2rem;
+  }
+  .footer-top {
+    display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 4rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(184, 151, 74, 0.15);
+    margin-bottom: 2rem;
+  }
+  .footer-brand .nav-logo-text { color: var(--gold-light); }
+  .footer-brand p {
+    font-size: 0.85rem; font-weight: 300;
+    line-height: 1.9; color: rgba(250,247,242,0.65);
+    margin-top: 1.2rem; max-width: 280px;
+  }
+  .footer-col h5 {
+    font-size: 0.65rem; font-weight: 500;
+    letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.5rem;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
+  .footer-col ul a {
+    font-size: 0.85rem; font-weight: 300;
+    color: rgba(250,247,242,0.65); text-decoration: none;
+    transition: color 0.3s;
+  }
+  .footer-col ul a:hover { color: var(--gold-light); }
+  .footer-bottom {
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .footer-copy {
+    font-size: 0.68rem; font-weight: 300;
+    color: rgba(250,247,242,0.25); letter-spacing: 0.1em;
+  }
+  .footer-instagram {
+    display: flex; align-items: center; gap: 0.6rem;
+    font-size: 0.68rem; font-weight: 300;
+    color: rgba(250,247,242,0.45); text-decoration: none;
+    transition: color 0.3s;
+  }
+  .footer-instagram:hover { color: var(--gold-light); }
+  .ig-icon { font-size: 1rem; }
+
+  /* ── PAGE TRANSITIONS ── */
+  .fade-in {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #hero { grid-template-columns: 1fr; }
+    .hero-right { min-height: 40vh; }
+    #about, .craft-inner, .owner-inner, .wholesale-inner, .contact-inner, .footer-top {
+      grid-template-columns: 1fr;
+    }
+    .heritage-grid { grid-template-columns: 1fr; }
+    .nav-links, .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    .owner-portrait { position: static; }
+    #wholesale::before { display: none; }
+    .craft-types { grid-template-columns: 1fr; }
+  }
+
+  /* ── MOBILE NAV OPEN ── */
+  .mobile-nav {
+    display: none; position: fixed; inset: 0; z-index: 99;
+    background: var(--ivory);
+    flex-direction: column; align-items: center; justify-content: center;
+    gap: 2.5rem;
+  }
+  .mobile-nav.open { display: flex; }
+  .mobile-nav a {
+    font-family: var(--font-display);
+    font-size: 2rem; font-weight: 300; font-style: italic;
+    color: var(--charcoal); text-decoration: none;
+    transition: color 0.3s;
+  }
+  .mobile-nav a:hover { color: var(--crimson); }
+  .mobile-nav-close {
+    position: absolute; top: 2rem; right: 2rem;
+    font-size: 1.5rem; cursor: pointer; background: none; border: none;
+    color: var(--charcoal);
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">
+    <img src="logo.png" alt="AR Fashion" class="nav-logo-img" onerror="this.style.display='none'">
+    <div>
+      <span class="nav-logo-text">AR Fashion</span>
+      <span class="nav-logo-sub">Est. Legacy of Elegance</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#heritage">Heritage</a></li>
+    <li><a href="#craft">Craft</a></li>
+    <li><a href="#owner">Our Story</a></li>
+    <li><a href="#wholesale">Wholesale</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+
+  <div class="hamburger" onclick="openMobileNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-nav-close" onclick="closeMobileNav()">✕</button>
+  <a href="#about" onclick="closeMobileNav()">About</a>
+  <a href="#heritage" onclick="closeMobileNav()">Heritage</a>
+  <a href="#craft" onclick="closeMobileNav()">Craft</a>
+  <a href="#owner" onclick="closeMobileNav()">Our Story</a>
+  <a href="#wholesale" onclick="closeMobileNav()">Wholesale</a>
+  <a href="#contact" onclick="closeMobileNav()">Contact</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Since a Decade</div>
+    <h1 class="hero-title">
+      Crafted for the<br><em>Discerning</em><br>Woman
+    </h1>
+    <p class="hero-desc">
+      AR Fashion — a name woven through generations of artisanal tradition. 
+      We create unstitched ladies' suits where every thread speaks of heritage, 
+      every motif tells a story of India's finest craft.
+    </p>
+    <div class="hero-actions">
+      <a href="#wholesale" class="btn-primary">Wholesale Enquiry</a>
+      <a href="#about" class="btn-secondary">Our Story</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">10+</div>
+        <div class="stat-label">Years of craft</div>
+      </div>
+      <div>
+        <div class="stat-num">B2B</div>
+        <div class="stat-label">Wholesale only</div>
+      </div>
+      <div>
+        <div class="stat-num">India</div>
+        <div class="stat-label">Proudly made here</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-logo-display">
+      <div class="hero-divider"></div>
+      <img src="logo.png" alt="AR Fashion" class="hero-logo-img" 
+           onerror="this.outerHTML='<div style=\'font-family:Cormorant Garamond,serif;font-size:5rem;font-weight:300;color:rgba(184,151,74,0.7);letter-spacing:0.1em;\'>AR</div>'">
+      <div class="hero-logo-tagline">
+        "Where heritage meets<br>the art of femininity"
+      </div>
+      <div class="hero-divider"></div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Handwork Suits</span>
+    <span class="marquee-item">Machine Work</span>
+    <span class="marquee-item">Unstitched Fabric</span>
+    <span class="marquee-item">Wholesale Only</span>
+    <span class="marquee-item">Ladies' Ethnic Wear</span>
+    <span class="marquee-item">Made in India</span>
+    <span class="marquee-item">Legacy Craftsmanship</span>
+    <span class="marquee-item">B2B Partnership</span>
+    <!-- repeat for infinite feel -->
+    <span class="marquee-item">Handwork Suits</span>
+    <span class="marquee-item">Machine Work</span>
+    <span class="marquee-item">Unstitched Fabric</span>
+    <span class="marquee-item">Wholesale Only</span>
+    <span class="marquee-item">Ladies' Ethnic Wear</span>
+    <span class="marquee-item">Made in India</span>
+    <span class="marquee-item">Legacy Craftsmanship</span>
+    <span class="marquee-item">B2B Partnership</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about" class="fade-in">
+  <div class="about-visual">
+    <div class="about-block">
+      <div class="about-block-inner">
+        <div class="about-block-num">10</div>
+        <div class="about-block-label">Years of Mastery</div>
+      </div>
+      <div class="about-accent">
+        <div class="about-accent-text">Rooted in<br>Indian<br>Tradition</div>
+      </div>
+    </div>
+  </div>
+  <div class="about-content">
+    <div class="section-tag">Who We Are</div>
+    <h2 class="section-title">A Legacy Built on<br><em>Threads & Trust</em></h2>
+    <p>
+      AR Fashion is a manufacturer and wholesaler of premium unstitched ladies' suits, 
+      rooted in the heart of India's textile tradition. Our journey began over a decade 
+      ago with a singular vision — to bring artisanal quality to the wholesale market.
+    </p>
+    <p>
+      We are not a marketplace. We are a manufacturer. Every piece that leaves our 
+      workshop carries the mark of careful craftsmanship, whether born from the delicacy 
+      of hand embroidery or the precision of machine work.
+    </p>
+    <ul class="about-list">
+      <li>Unstitched Ladies' Suits — Full Range</li>
+      <li>Handwork & Machine Work Specialisation</li>
+      <li>Price Range: ₹275 to ₹900</li>
+      <li>Wholesale & B2B Partnerships Only</li>
+      <li>India-Based Manufacturing</li>
+    </ul>
+    <a href="#wholesale" class="btn-primary" style="margin-top:1rem">Partner With Us</a>
+  </div>
+</section>
+
+<!-- HERITAGE -->
+<section id="heritage">
+  <div style="max-width: 600px;" class="fade-in">
+    <div class="section-tag">Our Heritage</div>
+    <h2 class="section-title">More Than a Decade of<br><em>Unbroken Craft</em></h2>
+  </div>
+  <div class="heritage-grid fade-in">
+    <div class="heritage-card">
+      <div class="heritage-icon">✦</div>
+      <h3>Artisan Handwork</h3>
+      <p>Every embroidered suit is a canvas. Our artisans bring decades of inherited technique to each piece — intricate thread work, mirror work, and embellishments that echo India's rich textile legacy.</p>
+    </div>
+    <div class="heritage-card">
+      <div class="heritage-icon">◈</div>
+      <h3>Machine Precision</h3>
+      <p>Where volume meets quality, our machine-work range delivers consistent excellence. Modern equipment guided by seasoned craftspeople ensures every suit meets our exacting standards.</p>
+    </div>
+    <div class="heritage-card">
+      <div class="heritage-icon">❋</div>
+      <h3>Trusted by Retailers</h3>
+      <p>For over ten years, wholesalers and retail businesses across India have relied on AR Fashion. Our B2B relationships are built on reliability, quality consistency, and honest dealing.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CRAFT -->
+<section id="craft">
+  <div class="craft-inner">
+    <div class="fade-in">
+      <div class="section-tag">What We Make</div>
+      <h2 class="section-title">The<br><em>Craft</em></h2>
+      <p style="font-size:0.83rem;font-weight:300;line-height:2;color:var(--charcoal-mid);">
+        We specialise exclusively in unstitched ladies' suits — offering wholesalers 
+        a range that spans accessible everyday elegance to exquisite occasion wear.
+      </p>
+      <div class="craft-range">
+        <div class="craft-range-label">Price Range per Piece</div>
+        <div class="craft-range-nums">
+          <span class="range-low">₹275</span>
+          <span class="range-sep">—</span>
+          <span class="range-high">₹900</span>
+          <span class="range-unit">Per Suit (Wholesale)</span>
+        </div>
+      </div>
+    </div>
+    <div class="craft-types fade-in">
+      <div class="craft-type">
+        <div class="craft-type-name">Hand Embroidery</div>
+        <div class="craft-type-desc">Intricate, artisan-made motifs using thread, zari, mirror, and stone work. Each piece is unique, carrying the touch of skilled hands.</div>
+      </div>
+      <div class="craft-type">
+        <div class="craft-type-name">Machine Work</div>
+        <div class="craft-type-desc">Consistent, high-quality embroidery and prints using modern machinery — perfect for volume orders without compromise on finish.</div>
+      </div>
+      <div class="craft-type">
+        <div class="craft-type-name">Occasion Wear</div>
+        <div class="craft-type-desc">Festive, bridal, and wedding collection suits with premium fabric and elaborate embellishments for the special moments.</div>
+      </div>
+      <div class="craft-type">
+        <div class="craft-type-name">Daily Wear</div>
+        <div class="craft-type-desc">Elegant, practical designs in cotton, georgette, and chiffon blends — the range your retail customers reach for every season.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OWNER -->
+<section id="owner">
+  <div class="owner-inner">
+    <div class="owner-portrait fade-in">
+      <div class="owner-portrait-frame">
+        <div class="owner-portrait-placeholder">
+          <div class="owner-initials">K</div>
+          <div style="font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--warm-gray);">Add Photo Here</div>
+        </div>
+        <div class="owner-portrait-label">
+          <div class="owner-name">Mr. Kalra</div>
+          <div class="owner-role">Founder & Master Craftsman · AR Fashion</div>
+        </div>
+      </div>
+    </div>
+    <div class="owner-content fade-in">
+      <div class="section-tag">Our Founder</div>
+      <h3>A Lifetime <em>Devoted</em><br>to the Loom</h3>
+      <div class="owner-bio-block">
+        "Every suit we create is a promise — to the retailer who trusts us, and to the woman who wears it."
+      </div>
+      <p class="owner-bio-text">
+        Mr. Kalra, the driving force behind AR Fashion, has spent more than a decade mastering 
+        the art and business of ladies' ethnic wear. His deep understanding of fabric, embroidery 
+        technique, and market needs has shaped AR Fashion into the trusted wholesale name it is today.
+      </p>
+      <p class="owner-bio-text">
+        Under his stewardship, the brand has grown from a modest manufacturing unit into a 
+        respected B2B supplier — known for fair pricing, consistent quality, and personal 
+        commitment to every business partner.
+      </p>
+      <p class="owner-bio-text">
+        His philosophy is simple: give the wholesaler something they can stand behind with pride. 
+        When a retailer's customer picks up a suit and loves it, that is AR Fashion's greatest achievement.
+      </p>
+      <div class="owner-placeholder-note">
+        <strong style="font-weight:500;color:var(--charcoal-mid);">📝 Your section to personalise:</strong><br>
+        Add your father's full name, personal story, background in the industry, values and vision 
+        here. You can also add a real photograph to the portrait area on the left for a more 
+        personal touch.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHOLESALE -->
+<section id="wholesale">
+  <div class="wholesale-inner">
+    <div class="wholesale-content fade-in">
+      <div class="section-tag">For Businesses</div>
+      <h2 class="section-title">We Serve<br><em>Wholesalers</em></h2>
+      <p>
+        AR Fashion operates exclusively in the B2B space. We do not sell to individual consumers. 
+        Our partners are wholesale businesses, regional distributors, and retail chains who 
+        require reliable, quality-consistent supply of ladies' ethnic suits.
+      </p>
+      <p>
+        If you are a business looking to stock a range that sells — from ₹275 accessible styles 
+        to ₹900 premium occasion wear — we invite you to connect with us.
+      </p>
+      <ul class="wholesale-points">
+        <li>Minimum bulk order quantities applicable</li>
+        <li>Full range of handwork and machine work available</li>
+        <li>Consistent quality across all price tiers</li>
+        <li>Flexible catalogue — seasonal & year-round designs</li>
+        <li>Direct from manufacturer — no middlemen</li>
+      </ul>
+    </div>
+    <div class="wholesale-cta-box fade-in">
+      <h4>Ready to Partner?</h4>
+      <p>
+        Reach out to discuss your requirement. Whether you are a new buyer or an existing 
+        partner, Mr. Kalra personally ensures every relationship is handled with care.
+      </p>
+      <a href="#contact" class="btn-gold">Get In Touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div style="text-align:center;margin-bottom:5rem;" class="fade-in">
+    <div class="section-tag" style="justify-content:center;">Reach Us</div>
+    <h2 class="section-title">Let's <em>Talk Business</em></h2>
+  </div>
+  <div class="contact-inner">
+    <div class="contact-info fade-in">
+      <h3>AR Fashion<br><em>Wholesale Enquiries</em></h3>
+      <p>
+        We welcome enquiries from wholesalers and retail businesses. 
+        Fill the form or contact us directly — Mr. Kalra will personally 
+        respond to all serious business queries.
+      </p>
+      <div class="contact-items">
+        <div class="contact-item">
+          <div class="contact-icon">✉</div>
+          <div class="contact-item-text">
+            <span class="contact-item-label">Email</span>
+            lovekalra58@gmail.com
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">☎</div>
+          <div class="contact-item-text">
+            <span class="contact-item-label">Phone / WhatsApp</span>
+            9045073650
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">⊕</div>
+          <div class="contact-item-text">
+            <span class="contact-item-label">Location</span>
+            India — Muzaffarnagar, Uttar Pradesh
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">◈</div>
+          <div class="contact-item-text">
+            <span class="contact-item-label">Instagram</span>
+            <a href="https://www.instagram.com/a.r_fashion_official?igsh=MTQxbWxuczFlanB3aQ==" target="_blank" style="color:var(--charcoal);text-decoration:none;">@ar_fashion_</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="nav-logo-text">AR Fashion</div>
+      <div class="nav-logo-sub" style="color:rgba(184,151,74,0.6);letter-spacing:0.3em;font-size:0.55rem;margin-top:4px;">Legacy of Elegance</div>
+      <p>Manufacturer & wholesaler of premium unstitched ladies' suits. More than a decade of craft, trust, and heritage.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Navigation</h5>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#heritage">Our Heritage</a></li>
+        <li><a href="#craft">The Craft</a></li>
+        <li><a href="#owner">Our Founder</a></li>
+        <li><a href="#wholesale">Wholesale</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Our Offering</h5>
+      <ul>
+        <li><a href="#craft">Handwork Suits</a></li>
+        <li><a href="#craft">Machine Work Suits</a></li>
+        <li><a href="#craft">Occasion Wear</a></li>
+        <li><a href="#craft">Daily Wear Range</a></li>
+        <li><a href="#wholesale">B2B / Wholesale Only</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 AR Fashion — Kalra's. All rights reserved. Wholesale only · India</div>
+    <a href="#" class="footer-instagram">
+      <span class="ig-icon">◈</span> Follow on Instagram
+    </a>
+  </div>
+</footer>
+
+<script>
+  // Scroll fade-in
+  const fadeEls = document.querySelectorAll('.fade-in');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  fadeEls.forEach(el => io.observe(el));
+
+  // Nav scroll effect
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    if (window.scrollY > 60) {
+      nav.style.padding = '1rem 5vw';
+      nav.style.boxShadow = '0 2px 30px rgba(42,33,24,0.08)';
+    } else {
+      nav.style.padding = '1.5rem 5vw';
+      nav.style.boxShadow = 'none';
+    }
+  });
+
+  function openMobileNav() { document.getElementById('mobileNav').classList.add('open'); }
+  function closeMobileNav() { document.getElementById('mobileNav').classList.remove('open'); }
+</script>
+</body>
+</html>
